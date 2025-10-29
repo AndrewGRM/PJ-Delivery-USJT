@@ -14,7 +14,28 @@ public class HealthController {
         return Map.of(
                 "status", "UP",
                 "timestamp", LocalDateTime.now().toString(),
-                "Service", "Delivery API"
+                "Service", "Delivery API",
+                "javaVersion", System.getProperty("java.version")
         );
     }
+
+    @GetMapping("/info")
+    public AppInfo info() {
+        return new AppInfo(
+                "Delivery Tech API",
+                "1.0.0",
+                "Andrew Gabriel Ramos Melo",
+                "JDK 21",
+                "Spring Boot 3.2.x"
+        );
+    }
+
+    // Record para demonstrar recurso do Java 14+
+    public record AppInfo(
+            String application,
+            String version,
+            String developer,
+            String javaVersion,
+            String framework
+    ) {}
 }
